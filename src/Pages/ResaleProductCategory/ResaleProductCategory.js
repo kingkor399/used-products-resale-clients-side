@@ -5,7 +5,7 @@ import ResaleCategoryCard from './ResaleCategoryCard';
 const ResaleProductCategory = () => {
     const resaleProducts = useLoaderData();
     return (
-        <div>
+        <div className='grid grid-cols-1 grid-cols-2 grid-cols-3 mb-8 mt-8'>
             {
                 resaleProducts.map(resaleProduct => <ResaleCategoryCard
                 key={resaleProduct._id}

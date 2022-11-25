@@ -11,7 +11,7 @@ const ResalerProductCard = ({ product }) => {
                     <h2 className="text-3xl font-semibold tracking-wide">{name}</h2>
                 </div>
                 <Link to={`/category/${id}`}>
-                    <button type="button" className="flex items-center justify-center w-full p-3 font-bold tracking-wide rounded-md bg-orange-600">Details</button>
+                    <button type="button" className="flex items-center justify-center w-full p-3 font-bold tracking-wide rounded-md bg-orange-400">Details</button>
                 </Link>
             </div>
         </div>
