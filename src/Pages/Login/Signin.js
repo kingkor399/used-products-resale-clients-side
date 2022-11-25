@@ -1,15 +1,35 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { AuthProvider } from '../../Context/AuthContext';
 
 const Signin = () => {
     const { handleSubmit, formState: { errors }, register } = useForm();
+    const {loginUser} = useContext(AuthProvider);
     const [loginerror, setLoginError] = useState('');
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
+    const handlelogin = data => {
+        console.log(data);
+        setLoginError('');
+        loginUser(data.email, data.password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                navigate(from, {replace: true});
+            })
+            .catch(error => {
+                console.log(error.message)
+                setLoginError(error.message)
+            })
+
+    }
     return (
         <div className='h-[400px] flex justify-center items-center'>
             <div className='w-96 p-7 bg-base-200 rounded-lg'>
                 <h2 className='text-xl font-bold text-center'>Login</h2>
-                <form onSubmit={handleSubmit()}>
+                <form onSubmit={handleSubmit(handlelogin)}>
                     <div className="form-control w-full max-w-xs">
                         <label className="label"><span className="label-text">Email</span></label>
                         <input {...register("email", { required: "Email Address is required" })} type='text' className="input input-bordered w-full max-w-xs" />
