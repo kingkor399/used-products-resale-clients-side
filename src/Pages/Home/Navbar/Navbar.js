@@ -5,6 +5,7 @@ const Navbar = () => {
     const menuItems =
         <>
             <li className='font-bold'><Link to='/'>Home</Link></li>
+            <li className='font-bold'><Link to='/signin'>Login</Link></li>
         </>
     return (
         <div className="navbar h-20 bg-info rounded-lg">
