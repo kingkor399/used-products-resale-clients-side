@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ResaleCategoryCard = ({ resaleProduct }) => {
+const ResaleCategoryCard = ({ resaleProduct, setBooking }) => {
     const { name, img, location, resale, original_price, use, posted, seller } = resaleProduct;
     return (
         <div className="max-w-xs rounded-md shadow-md bg-base-200 dark:text-gray-100">
@@ -15,7 +15,12 @@ const ResaleCategoryCard = ({ resaleProduct }) => {
                     <p className="dark:text-gray-100 font-semibold">location: {location}</p>
                     <p className="dark:text-gray-100 font-semibold">Posted: {posted}</p>
                 </div>
-                <button type="button" className="flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md bg-success dark:text-gray-900">Book now</button>
+                
+                <label 
+                htmlFor="booknow-modal" 
+                className="btn btn-success"
+                onClick={() => setBooking(resaleProduct)}
+                >Book Now</label>
             </div>
         </div>
     );

@@ -15,18 +15,34 @@ const SignUp = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user)
-                toast.success('user create successfully')
-                navigate('/')
+                toast.success('user create successfully');
                 const userInfo = {
                     displayName: data.name
                 }
                 updateUser(userInfo)
                     .then(() => {
+                        saveUser(data.name, data.select, data.email)
                     })
                     .catch(err => console.log(err))
             })
             .catch(err => console.error(err))
 
+    }
+
+    const saveUser = (name, select, email) =>{
+        const user = {name, select, email}
+        fetch('http://localhost:5000/users',{
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            navigate('/');
+        })
     }
 
     const handleGoogleUser = () => {
@@ -35,19 +51,24 @@ const SignUp = () => {
                 const user = result.user;
                 console.log(user);
             })
-        .catch (err => console.log(err))
+            .catch(err => console.log(err))
     }
 
     return (
-        <div className='h-[400px] flex justify-center items-center mb-10 mt-5'>
+        <div className='h-[400px] flex justify-center items-center mb-20 mt-8'>
             <div className='w-96 p-7'>
-                <h2 className='text-xl font-bold text-center'>SignUp</h2>
+                <h2 className='text-xl font-bold text-center mt-8'>SignUp</h2>
                 <form onSubmit={handleSubmit(handlesignup)}>
                     <div className="form-control w-full max-w-xs">
                         <label className="label"><span className="label-text">Name</span></label>
                         <input {...register("name", { required: "name is required" })} type='text' className="input input-bordered w-full max-w-xs" />
                         {errors.name && <p className='text-red-600' role='alert'>{errors.name.message}</p>}
                     </div>
+                    <select {...register("select", { required: "type is required" })} className="select select-info w-full max-w-xs mt-4">
+                        <option disabled selected>Select type</option>
+                        <option>seller</option>
+                        <option>normal user</option>
+                    </select>
                     <div className="form-control w-full max-w-xs">
                         <label className="label"><span className="label-text">Email</span></label>
                         <input {...register("email", { required: "Email Address is required" })} type='email' className="input input-bordered w-full max-w-xs" />
@@ -58,7 +79,6 @@ const SignUp = () => {
                         <input {...register("password", {
                             required: "Password is required",
                             minLength: { value: 6, message: 'Password at least 6 character' },
-                            // pattern: { value: /^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])/, message: "Password must be strong" }
                         })} type='password' className="input input-bordered w-full max-w-xs" />
                         {errors.password && <p className='text-red-600' role='alert'>{errors.password.message}</p>}
                     </div>
