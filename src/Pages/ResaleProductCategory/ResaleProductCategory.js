@@ -5,7 +5,7 @@ import ResaleCategoryCard from './ResaleCategoryCard';
 
 const ResaleProductCategory = () => {
     const resaleProducts = useLoaderData();
-    const [booking, setBooking] = useState(null)
+    const [booking, setBooking] = useState(null);
     return (
         <section>
             <div className='gap-6 grid grid-cols-1 grid-cols-2 grid-cols-3 mb-8 mt-8'>
@@ -17,12 +17,13 @@ const ResaleProductCategory = () => {
                     ></ResaleCategoryCard>)
                 }
             </div>
-            {   booking &&
+            {booking &&
                 <BooknowModal
-                booking={booking}
-                setBooking={setBooking}
+                    booking={booking}
+                    setBooking={setBooking}
                 ></BooknowModal>
             }
+
         </section>
     );
 };

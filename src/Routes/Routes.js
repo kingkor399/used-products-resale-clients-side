@@ -1,5 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
+import DashboardLayout from "../layout/DashboardLayout";
 import Main from "../layout/Main";
+import Dashboard from "../Pages/Dashboard/Dashboard";
+import Myorders from "../Pages/Dashboard/MyOrders/Myorders";
 import Home from "../Pages/Home/Home";
 import Signin from "../Pages/Login/Signin";
 import ResaleProductCategory from "../Pages/ResaleProductCategory/ResaleProductCategory";
@@ -18,6 +21,7 @@ const router = createBrowserRouter([
             element: <PrivateRoute><ResaleProductCategory></ResaleProductCategory></PrivateRoute>,
             loader: ({params}) => fetch(`http://localhost:5000/category/${params.id}`)
         },
+        
         {
             path: '/signin',
             element: <Signin></Signin>
@@ -27,6 +31,16 @@ const router = createBrowserRouter([
             element: <SignUp></SignUp>
         }
     ]
+    },
+    {
+        path: '/dashboard',
+        element: <DashboardLayout></DashboardLayout>,
+        children: [
+            {
+                path: '/dashboard',
+                element: <Myorders></Myorders>
+            }
+        ]
     }
 ])
 

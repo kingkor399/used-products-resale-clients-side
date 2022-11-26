@@ -1,13 +1,14 @@
 import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
 import { AuthProvider } from '../../Context/AuthContext';
 
-const BooknowModal = ({booking, setBooking}) => {
-    const {user} = useContext(AuthProvider);
-    const {name, resale} = booking;
-    const handleBooking = event =>{
+const BooknowModal = ({ booking, setBooking }) => {
+    const { user } = useContext(AuthProvider);
+    const { name, resale, location, img } = booking;
+    const handleBooking = event => {
         event.preventDefault();
         const form = event.target;
-        const name= form.name.value;
+        const name = form.name.value;
         const email = form.email.value;
         const item = form.item.value;
         const price = form.price.value;
@@ -20,10 +21,25 @@ const BooknowModal = ({booking, setBooking}) => {
             item,
             price,
             location,
-            phone
+            phone,
+            img
         }
-        console.log(booking);
-        setBooking(null);
+
+        fetch('http://localhost:5000/bookings', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(booking)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    setBooking(null);
+                    toast.success('booking successfully');
+                }
+
+            })
     }
     return (
         <>
@@ -36,10 +52,10 @@ const BooknowModal = ({booking, setBooking}) => {
                         <input name='email' defaultValue={user?.email} readOnly type="email" placeholder="email" className="input w-full input-bordered" />
                         <input name='item' defaultValue={name} readOnly type="text" placeholder="item-name" className="input w-full input-bordered" />
                         <input name='price' defaultValue={resale} readOnly type="text" placeholder="price" className="input w-full input-bordered" />
-                        <input name='location' type="text" placeholder="location" className="input w-full input-bordered" />
+                        <input name='location' defaultValue={location} readOnly type="text" placeholder="location" className="input w-full input-bordered" />
                         <input name='phone' type="text" placeholder="phone" className="input w-full input-bordered" />
-                        <br/>
-                        <input type='submit' className='btn btn-success w-full' value='Submit'/>
+                        <br />
+                        <input type='submit' className='btn btn-success w-full' value='Submit' />
                     </form>
                 </div>
             </div>
