@@ -13,7 +13,7 @@ const Myorders = () => {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
             }
         })
-                        .then(res => res.json())
+        .then(res => res.json())
     })
 
     if(loading){

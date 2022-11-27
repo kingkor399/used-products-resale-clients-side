@@ -9,6 +9,22 @@ const Allusers = () => {
             .then(res => res.json())
     })
 
+    const handleDelete = alluser =>{
+        fetch(`http://localhost:5000/alluser/${alluser._id}`,{
+            method: 'DELETE',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.deletedCount){
+                refetch();
+                toast.success('user deleted successfuly')
+            }
+        })
+    }
+
     return (
         <div>
             <h2 className='text-3xl font-semibold'>All Users</h2>
@@ -30,7 +46,7 @@ const Allusers = () => {
                                 <td>{user?.name}</td>
                                 <td>{user?.email}</td>
                                 <td>{ user?.role !== 'admin' && <button className='btn btn-xs btn-success'>Make Admin</button>}</td>
-                                <td><button className='btn btn-xs btn-error'>Delete</button></td>
+                                <td><button onClick={() => handleDelete(user)} className='btn btn-xs btn-error'>Delete</button></td>
                             </tr>)
                         }
                     </tbody>
