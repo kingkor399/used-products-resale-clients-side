@@ -17,7 +17,7 @@ const Myorders = () => {
     return (
         <div>
             <h3 className='text-3xl font-semibold'>My Orders</h3>
-            {
+            {bookings &&
                 bookings?.map(booking => <MyOrderCard
                 key={booking._id}
                 booking={booking}
