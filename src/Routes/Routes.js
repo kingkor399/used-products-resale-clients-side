@@ -13,6 +13,7 @@ import ResaleProductCategory from "../Pages/ResaleProductCategory/ResaleProductC
 import SignUp from "../Pages/SignUp/SignUp";
 import AdminRoutes from "./AdminRoute/AdminRoutes";
 import PrivateRoute from "./PrivateRoute";
+import SellerRoutes from "./SellerRoutes/SellerRoutes";
 
 const router = createBrowserRouter([
     {path: '/', element: <Main></Main>,
@@ -50,16 +51,16 @@ const router = createBrowserRouter([
                 element: <AdminRoutes><Allusers></Allusers></AdminRoutes>
             },
             {
+                path: '/dashboard/allselers',
+                element: <Allsellers></Allsellers>
+            },
+            {
                 path: '/dashboard/addproduct',
-                element: <AddProducts></AddProducts>
+                element: <SellerRoutes><AddProducts></AddProducts></SellerRoutes>
             },
             {
                 path: '/dashboard/myproduct',
-                element: <Myproducts></Myproducts>
-            },
-            {
-                path: '/dashboard/allselers',
-                element: <Allsellers></Allsellers>
+                element: <SellerRoutes><Myproducts></Myproducts></SellerRoutes>
             }
 
         ]
