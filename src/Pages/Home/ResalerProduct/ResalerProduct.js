@@ -6,7 +6,7 @@ import ResalerProductCard from './ResalerProductCard';
 const ResalerProduct = () => {
     const { data: products = [], isLoading } = useQuery({
         queryKey: ['products'],
-        queryFn: () => fetch('http://localhost:5000/products')
+        queryFn: () => fetch('https://products-resale-server-side.vercel.app/products')
             .then(res => res.json())
     })
     if (isLoading) {

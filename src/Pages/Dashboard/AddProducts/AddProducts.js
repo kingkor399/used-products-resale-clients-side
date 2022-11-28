@@ -28,7 +28,7 @@ const AddProducts = () => {
                     image: imgData.data.url
                 }
 
-                fetch('http://localhost:5000/products',{
+                fetch('https://products-resale-server-side.vercel.app/products',{
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json',

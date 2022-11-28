@@ -5,12 +5,12 @@ import toast from 'react-hot-toast';
 const Allsellers = () => {
     const { data: sellers = [], isLoading, refetch } = useQuery({
         queryKey: ['users'],
-        queryFn: () => fetch(`http://localhost:5000/sellers`)
+        queryFn: () => fetch(`https://products-resale-server-side.vercel.app/sellers`)
             .then(res => res.json())
     })
 
     const handleDelete = seller => {
-        fetch(`http://localhost:5000/sellers/${seller._id}`, {
+        fetch(`https://products-resale-server-side.vercel.app/sellers/${seller._id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -27,7 +27,6 @@ const Allsellers = () => {
 
     return (
         <div>
-            <h3 className='text-3xl'>All sellers</h3>
             <div className="overflow-x-auto mt-4">
                 <table className="table w-full">
                     <thead>

@@ -6,12 +6,12 @@ const Myproducts = () => {
 
     const { data: products = [], isLoading, refetch } = useQuery({
         queryKey: ['products'],
-        queryFn: () => fetch('http://localhost:5000/myproducts')
+        queryFn: () => fetch('https://products-resale-server-side.vercel.app/myproducts')
             .then(res => res.json())
     })
 
     const handleDelete = myproduct => {
-        fetch(`http://localhost:5000/myproduct/${myproduct._id}`, {
+        fetch(`https://products-resale-server-side.vercel.app/myproduct/${myproduct._id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`

@@ -8,7 +8,7 @@ const Myorders = () => {
     const {user, loading} = useContext(AuthProvider);
     const {data: bookings = []} = useQuery({
         queryKey: ['bookings', user?.email],
-        queryFn: () => fetch(`http://localhost:5000/bookings?email=${user?.email}`,{
+        queryFn: () => fetch(`https://products-resale-server-side.vercel.app/bookings?email=${user?.email}`,{
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
             }
