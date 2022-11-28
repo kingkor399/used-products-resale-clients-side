@@ -11,7 +11,7 @@ const Blog = () => {
                 <h2 className="card-title font-bold">Question: What is a unit test? Why should we write unit tests?</h2>
                 <p className='font-bold'>Answer: The main objective of unit testing is to isolate written code to test and determine if it works as intended. Unit testing is an important step in the development process, because if done correctly, it can help detect early flaws in code which may be more difficult to find in later testing stages.</p>
                 <h2 className="card-title font-bold">Question: React vs. Angular vs. Vue?</h2>
-                <p className='font-bold'>Answer: </p>
+                <p className='font-bold'>Answer: Vue provides higher customizability and hence is easier to learn than Angular or React. Further, Vue has an overlap with Angular and React with respect to their functionality like the use of components. Hence, the transition to Vue from either of the two is an easy option</p>
             </div>
         </div>
     );
