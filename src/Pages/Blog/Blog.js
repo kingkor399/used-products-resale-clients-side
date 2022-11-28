@@ -3,13 +3,15 @@ import React from 'react';
 const Blog = () => {
     return (
         <div className="card lg:card-side bg-base-100 shadow-xl">
-            <figure><img src="https://placeimg.com/400/400/arch" alt="Album" /></figure>
             <div className="card-body">
-                <h2 className="card-title">New album is released!</h2>
-                <p>Click the button to listen on Spotiwhy app.</p>
-                <div className="card-actions justify-end">
-                    <button className="btn btn-primary">Listen</button>
-                </div>
+                <h2 className="card-title font-bold">Question: What are the different ways to manage a state in a React application?</h2>
+                <p className='font-bold'>Answer: </p>
+                <h2 className="card-title font-bold">Question: </h2>
+                <p className='font-bold'>Answer: </p>
+                <h2 className="card-title font-bold">Question: </h2>
+                <p className='font-bold'>Answer: </p>
+                <h2 className="card-title font-bold">Question: </h2>
+                <p className='font-bold'>Answer: </p>
             </div>
         </div>
     );
